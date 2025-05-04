@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PDF Tools</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Add Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="shortcut icon" href="../static/assets/logo.png" type="image/x-icon">
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.27/bundled/lenis.min.js"></script>
+  </head>
+  <body class="bg-gray-50">
+    <!-- Modern Navbar -->
+    <nav
+      class="fixed top-0 w-full bg-gradient-to-r from-gray-100 to-blue-100 shadow-lg z-50 transition-all duration-300"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex items-center">
+            <a href="#" class="flex items-center group">
+              <i
+                class="fas fa-file-pdf text-blue-600 text-2xl mr-2 group-hover:animate-bounce"
+              ></i>
+              <span class="text-xl font-bold text-blue-700"> DocDynamo </span>
+            </a>
+          </div>
+          <div class="hidden md:flex items-center space-x-6">
+            <a
+              href="#merge"
+              class="nav-link group px-4 py-2 rounded-lg hover:bg-blue-100 transition-all duration-300"
+            >
+              <i
+                class="fas fa-object-group text-blue-600 mr-2 group-hover:scale-110 transform transition-transform"
+              ></i>
+              <span class="font-medium text-gray-800">Merge</span>
+              <div
+                class="h-0.5 w-0 group-hover:w-full bg-blue-600 transition-all duration-300"
+              ></div>
+            </a>
+            <a
+              href="#compress"
+              class="nav-link group px-4 py-2 rounded-lg hover:bg-blue-100 transition-all duration-300"
+            >
+              <i
+                class="fas fa-compress text-blue-600 mr-2 group-hover:scale-110 transform transition-transform"
+              ></i>
+              <span class="font-medium text-gray-800">Compress</span>
+              <div
+                class="h-0.5 w-0 group-hover:w-full bg-blue-600 transition-all duration-300"
+              ></div>
+            </a>
+            <a
+              href="#convert"
+              class="nav-link group px-4 py-2 rounded-lg hover:bg-blue-100 transition-all duration-300"
+            >
+              <i
+                class="fas fa-file-powerpoint text-blue-600 mr-2 group-hover:scale-105 transform transition-transform"
+              ></i>
+              <span class="font-medium text-gray-800">Convert</span>
+              <div
+                class="h-0.5 w-0 group-hover:w-full bg-blue-600 transition-all duration-300"
+              ></div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- Hero Section -->
+    <div
+      class="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-20 relative overflow-hidden flex items-center"
+    >
+      <!-- Enhanced animated background -->
+      <div class="absolute inset-0 overflow-hidden">
+        <div
+          class="absolute -top-40 -right-40 w-96 h-96 bg-blue-200/50 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"
+        ></div>
+        <div
+          class="absolute -bottom-40 -left-40 w-96 h-96 bg-purple-200/50 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"
+        ></div>
+        <div
+          class="absolute top-1/2 left-1/2 w-96 h-96 bg-pink-200/50 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-4000"
+        ></div>
+        <!-- Floating elements -->
+        <div class="absolute top-20 right-20 animate-float-slow">
+          <i class="fas fa-file-pdf text-6xl text-blue-400/30"></i>
+        </div>
+        <div class="absolute bottom-20 left-20 animate-float-medium">
+          <i class="fas fa-compress text-5xl text-purple-400/30"></i>
+        </div>
+        <div class="absolute top-1/3 left-1/4 animate-float-fast">
+          <i class="fas fa-object-group text-4xl text-indigo-400/30"></i>
+        </div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div
+          class="flex flex-col md:flex-row items-center justify-between gap-16"
+        >
+          <!-- Left side content -->
+          <div class="flex-1 text-left">
+            <div class="space-y-8">
+              <div
+                class="inline-flex items-center space-x-2 animate-fade-in-up"
+              >
+                <span
+                  class="px-4 py-2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full text-sm font-semibold text-blue-800 border border-blue-200 backdrop-blur-sm"
+                >
+                  <i class="fas fa-sparkles mr-2"></i>Free & Open Source
+                </span>
+              </div>
+
+              <h1
+                class="text-7xl font-black mb-6 leading-tight animate-fade-in-up animation-delay-200"
+              >
+                <span
+                  class="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-transparent bg-clip-text"
+                >
+                  Transform Your PDFs with Ease
+                </span>
+              </h1>
+
+              <p
+                class="text-xl text-gray-600 leading-relaxed max-w-xl animate-fade-in-up animation-delay-400"
+              >
+                Powerful, free tools to merge, compress, and convert your
+                documents.
+                <span class="font-semibold text-blue-600"
+                  >No registration required.</span
+                >
+              </p>
+
+              <div
+                class="flex flex-wrap gap-4 animate-fade-in-up animation-delay-600"
+              >
+                <a
+                  href="#merge"
+                  class="group px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl text-lg font-semibold hover:opacity-90 transform hover:scale-105 transition-all duration-300 shadow-lg flex items-center"
+                >
+                  <i
+                    class="fas fa-rocket mr-2 group-hover:translate-x-1 transition-transform"
+                  ></i>
+                  Get Started
+                </a>
+                <a
+                  href="#why-choose"
+                  class="group px-8 py-4 bg-white/80 backdrop-blur-sm text-gray-800 rounded-xl text-lg font-semibold hover:bg-gray-50 transform hover:scale-105 transition-all duration-300 shadow-lg flex items-center border-2 border-gray-200"
+                >
+                  <i
+                    class="fas fa-info-circle mr-2 group-hover:rotate-12 transition-transform"
+                  ></i>
+                  Learn More
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right side illustration -->
+          <div class="flex-1 relative animate-fade-in-up animation-delay-800">
+            <div class="relative w-full aspect-square max-w-lg mx-auto">
+              <!-- 3D Card Stack Effect -->
+              <div
+                class="absolute inset-0 bg-gradient-to-br from-blue-100 to-purple-100 rounded-3xl transform rotate-6 translate-x-4 translate-y-4 shadow-2xl"
+              ></div>
+              <div
+                class="absolute inset-0 bg-white rounded-3xl transform rotate-3 translate-x-2 translate-y-2 shadow-xl"
+              ></div>
+              <div
+                class="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-3xl shadow-lg"
+              >
+                <div class="absolute inset-0 p-8">
+                  <div class="grid grid-cols-2 gap-4 h-full">
+                    <div
+                      class="bg-white p-6 rounded-xl shadow-md transform hover:scale-105 transition-all duration-300 flex items-center justify-center"
+                    >
+                      <i class="fas fa-file-pdf text-5xl text-blue-500"></i>
+                    </div>
+                    <div
+                      class="bg-white p-6 rounded-xl shadow-md transform hover:scale-105 transition-all duration-300 flex items-center justify-center"
+                    >
+                      <i class="fas fa-compress text-5xl text-green-500"></i>
+                    </div>
+                    <div
+                      class="bg-white p-6 rounded-xl shadow-md transform hover:scale-105 transition-all duration-300 flex items-center justify-center"
+                    >
+                      <i
+                        class="fas fa-object-group text-5xl text-purple-500"
+                      ></i>
+                    </div>
+                    <div
+                      class="bg-white p-6 rounded-xl shadow-md transform hover:scale-105 transition-all duration-300 flex items-center justify-center"
+                    >
+                      <i
+                        class="fas fa-file-powerpoint text-5xl text-orange-500"
+                      ></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Features Section -->
+    <div id="why-choose" class="py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900">
+            Why Choose Our DocDynamo ?
+          </h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div
+            class="p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl text-center transform hover:-translate-y-1 transition-all duration-300"
+          >
+            <i class="fas fa-bolt text-4xl text-blue-500 mb-4"></i>
+            <h3 class="text-xl font-semibold mb-2">Fast & Efficient</h3>
+            <p class="text-gray-600">
+              Process your PDFs instantly with our optimized tools
+            </p>
+          </div>
+          <div
+            class="p-6 bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl text-center transform hover:-translate-y-1 transition-all duration-300"
+          >
+            <i class="fas fa-lock text-4xl text-purple-500 mb-4"></i>
+            <h3 class="text-xl font-semibold mb-2">Secure</h3>
+            <p class="text-gray-600">
+              Your files are processed locally and never stored
+            </p>
+          </div>
+          <div
+            class="p-6 bg-gradient-to-br from-green-50 to-teal-50 rounded-xl text-center transform hover:-translate-y-1 transition-all duration-300"
+          >
+            <i class="fas fa-gift text-4xl text-green-500 mb-4"></i>
+            <h3 class="text-xl font-semibold mb-2">Free Forever</h3>
+            <p class="text-gray-600">
+              All tools are completely free with no limitations
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content with Sections -->
+    <div
+      class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex justify-center items-center min-h-screen"
+    >
+      <!-- Alert for Messages -->
+      <div
+        class="hidden bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-xl fixed top-20 right-4 transform transition-all duration-300 z-50 shadow-lg"
+        role="alert"
+        id="successAlert"
+      >
+        <span id="successMessage" class="font-medium"></span>
+        <button
+          type="button"
+          class="absolute top-0 right-0 px-4 py-3 transition-transform hover:scale-110"
+          aria-label="Close"
+        >
+          <span class="sr-only">Close</span>
+          <svg
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Sections for each feature -->
+      <div class="space-y-12 w-full max-w-4xl">
+        <!-- Merge Section -->
+        <div
+          id="merge"
+          class="bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
+        >
+          <h2
+            class="text-3xl font-bold mb-6 text-center bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text"
+          >
+            Merge PDFs
+          </h2>
+          <form id="mergeForm" class="space-y-6">
+            <div class="relative">
+              <label
+                class="block text-gray-700 text-lg mb-3 font-medium"
+                for="mergeFiles"
+              >
+                Select PDF files to merge
+              </label>
+              <input
+                type="file"
+                class="w-full px-4 py-3 border-2 border-blue-200 rounded-lg focus:border-blue-500 transition-colors duration-300"
+                id="mergeFiles"
+                name="files[]"
+                multiple
+                accept=".pdf"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:opacity-90 transform hover:scale-105 transition-all duration-300 shadow-md"
+            >
+              <i class="fas fa-object-group mr-2"></i>Merge PDFs
+            </button>
+          </form>
+        </div>
+
+        <!-- Compress Section -->
+        <div
+          id="compress"
+          class="bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
+        >
+          <h2
+            class="text-3xl font-bold mb-6 text-center bg-gradient-to-r from-green-600 to-blue-600 text-transparent bg-clip-text"
+          >
+            Compress PDF
+          </h2>
+          <form id="compressForm" class="space-y-6">
+            <div class="relative">
+              <label
+                class="block text-gray-700 text-lg mb-3 font-medium"
+                for="compressFile"
+              >
+                Select a PDF file to compress
+              </label>
+              <input
+                type="file"
+                class="w-full px-4 py-3 border-2 border-green-200 rounded-lg focus:border-green-500 transition-colors duration-300"
+                id="compressFile"
+                name="file"
+                accept=".pdf"
+                required
+              />
+            </div>
+            <div class="relative">
+              <label
+                class="block text-gray-700 text-lg mb-3 font-medium"
+                for="compressionLevel"
+              >
+                Compression Level (Higher = Smaller file size, Lower quality)
+              </label>
+              <input
+                type="range"
+                class="w-full"
+                id="compressionLevel"
+                name="level"
+                min="1"
+                max="100"
+                value="50"
+              />
+              <div class="text-center mt-2">
+                <span id="compressionValue">50%</span>
+              </div>
+            </div>
+            <button
+              type="submit"
+              class="w-full bg-gradient-to-r from-green-500 to-blue-600 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:opacity-90 transform hover:scale-105 transition-all duration-300 shadow-md"
+            >
+              <i class="fas fa-compress mr-2"></i>Compress PDF
+            </button>
+          </form>
+        </div>
+
+        <!-- Convert PPT Section -->
+        <div
+          id="convert"
+          class="bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
+        >
+          <h2
+            class="text-3xl font-bold mb-6 text-center bg-gradient-to-r from-orange-600 to-red-600 text-transparent bg-clip-text"
+          >
+            Convert PPT to PDF
+          </h2>
+          <form id="convertForm" class="space-y-6">
+            <div class="relative">
+              <label
+                class="block text-gray-700 text-lg mb-3 font-medium"
+                for="pptFile"
+              >
+                Select PowerPoint file to convert
+              </label>
+              <input
+                type="file"
+                class="w-full px-4 py-3 border-2 border-orange-200 rounded-lg focus:border-orange-500 transition-colors duration-300"
+                id="pptFile"
+                name="file"
+                accept=".ppt,.pptx"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              class="w-full bg-gradient-to-r from-orange-500 to-red-600 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:opacity-90 transform hover:scale-105 transition-all duration-300 shadow-md"
+            >
+              <i class="fas fa-file-pdf mr-2"></i>Convert to PDF
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Enhanced Footer -->
+    <footer
+      class="bg-gradient-to-r from-gray-800 to-gray-900 text-center w-full text-white mt-12"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="flex flex-col items-center justify-center mb-8">
+          <h3
+            class="text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500"
+          >
+          DocDynamo 
+          </h3>
+          <div class="text-xl mb-4 animate-pulse">
+            Developed with
+            <i class="fas fa-heart text-red-500 animate-bounce"></i> by
+            <span
+              class="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-pink-500"
+              >Pratham Darji</span
+            >
+          </div>
+          <p class="text-lg bg-gray-700 px-4 py-2 rounded-full">
+            Free and Open Source Tool
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+          <div class="text-center">
+            <h4 class="text-lg font-semibold mb-2">Quick Links</h4>
+            <ul class="space-y-2">
+              <li>
+                <a href="#merge" class="hover:text-blue-400 transition-colors"
+                  >Merge PDFs</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#compress"
+                  class="hover:text-blue-400 transition-colors"
+                  >Compress PDF</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#convert"
+                  class="hover:text-blue-400 transition-colors"
+                  >Convert PPT to PDF</a
+                >
+            </ul>
+          </div>
+          <div class="text-center">
+            <h4 class="text-lg font-semibold mb-2">Features</h4>
+            <ul class="space-y-2">
+              <li>PDF Merging</li>
+              <li>PDF Compression</li>
+              <li>PPT to PDF Conversion</li>
+            </ul>
+          </div>
+          <div class="text-center">
+            <h4 class="text-lg font-semibold mb-2">Contact</h4>
+            <div class="space-y-2">
+              <p><i class="fas fa-envelope mr-2"></i>pratham8355gmail.com</p>
+              <div class="flex justify-center space-x-4 mt-2">
+                <a
+                  href="https://github.com/Pratham-Prog861"
+                  target="_blank"
+                  class="hover:text-blue-400 transition-colors"
+                  ><i class="fab fa-github text-xl"></i
+                ></a>
+
+                <a
+                  href="https://www.linkedin.com/in/pratham-darji-b704092a2/"
+                  target="_blank"
+                  class="hover:text-blue-400 transition-colors"
+                  ><i class="fab fa-linkedin text-xl"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="border-t border-gray-700 pt-8 text-center">
+          <p class="text-sm">&copy; 2025 DocDynamo . All rights reserved.</p>
+          <p class="text-xs text-gray-400 mt-2">
+            Made with modern web technologies
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+      <div class="loader">
+        <div class="loader-circle"></div>
+        <div class="loader-content">
+          <div class="loader-text">DocDynamo </div>
+          <div class="loader-progress" id="progress">0%</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wrap all existing content in a content div -->
+    <div class="content" id="mainContent">
+      <!-- ... existing content (navbar and everything else) ... -->
+    </div>
+
+    <script src="https://unpkg.com/lenis@1.2.3/dist/lenis.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  </body>
+</html>
