@@ -3,16 +3,8 @@
 Here are some screenshots of DocDynamo in action:
 
 ### PDF Merger
-![PDF Merger Interface](./static/assets/screenshots/pdf-merger.png)
-*The PDF Merger interface allows you to easily combine multiple PDF files*
+![PDF Merger WebApp Interface](./static/assets/screenshots/pdf-merger.png)
 
-### PDF Compressor 
-![PDF Compressor Interface](./static/assets/screenshots/pdf-compressor.png)
-*Compress your PDFs while maintaining quality with adjustable compression levels*
-
-### PPT to PDF Converter
-![PPT Converter Interface](./static/assets/screenshots/ppt-converter.png)
-*Convert PowerPoint presentations to PDF format with preserved formatting*
 
 Note: To add these screenshots:
 1. Create a `screenshots` folder in `static/assets/`
