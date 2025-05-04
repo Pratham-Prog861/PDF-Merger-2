@@ -3,14 +3,7 @@
 Here are some screenshots of DocDynamo in action:
 
 ### PDF Merger
-![PDF Merger WebApp Interface](./static/assets/screenshots/pdf-merger.png)
-
-
-Note: To add these screenshots:
-1. Create a `screenshots` folder in `static/assets/`
-2. Save your application screenshots as PNG files
-3. Name them appropriately as shown in the image paths above
-4. Place them in the screenshots folder
+![PDF Merger WebApp Interface](/static/assets/pdf-merger.png)
 
 
 # DocDynamo - PDF Tools
