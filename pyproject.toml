@@ -1,7 +1,7 @@
 [project]
 name = "pdf-merger2"
 version = "0.1.0"
-description = "Add your description here"
+description = "A webapp fro merging, compress pdf and also convert ppt to pdf"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
