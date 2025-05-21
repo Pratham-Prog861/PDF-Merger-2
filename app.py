@@ -223,6 +223,11 @@ def merge_pdfs() -> Union[Response, tuple[Response, int]]:
 
 @app.route('/convert-ppt', methods=['POST'])
 def convert_ppt():
+    if not os.name == 'nt':  # Check if not running on Windows
+        return jsonify({
+            'error': 'PowerPoint conversion is only available on Windows servers. This feature is not supported in the cloud deployment.'
+        }), 400
+        
     try:
         if 'file' not in request.files:
             return jsonify({'error': 'No file provided'}), 400
